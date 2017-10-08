@@ -1,7 +1,7 @@
 {
-  "name": "apollo-starter-kit",
+  "name": "foodstagram-server",
   "version": "0.1.0",
-  "description": "Minimal set of code to write a GraphQL server with Apollo graphql-tools",
+  "description": "GraphQL server with Apollo graphql-tools",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,22 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apollostack/apollo-starter-kit.git"
+    "url": "git+https://github.com/sharonswli/foodstagram-graphql"
   },
   "keywords": [
     "Node.js",
     "Javascript",
     "GraphQL",
     "Express",
-    "Apollo",
-    "Meteor"
+    "Apollo"
   ],
-  "author": "Jonas Helfer <jonas@helfer.email>",
+  "author": "sharonsw",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apollostack/apollo-starter-kit/issues"
+    "url": "https://github.com/sharonswli/foodstagram-graphql/issues"
   },
-  "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
+  "homepage": "https://github.com/sharonswli/foodstagram-graphql#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "4.13.4",
