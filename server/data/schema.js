@@ -2,42 +2,44 @@ import {
   makeExecutableSchema,
   addMockFunctionsToSchema,
 } from 'graphql-tools';
-import mocks from './mocks'
+
+import resolvers from "./resolvers";
 
 // Our typeDef string defines our schema
 // Define your types within rootQuery that client is allowed to request
 const typeDefs = `
+# the schema allows the following query;
 type Query {
-  meal(id: ID): Meal
-  restaurant(id: ID): Restaurant
+  user(username: String): User
+}
+
+type User {
+  id: ID!
+  username: String
+  posts: [Post]
+}
+
+type Post {
+  id: ID!
+  userId: Int
+  description: String
+  calories: Int
+  image: String
+  servingAt: Restaurant
 }
 
 type Restaurant {
   id: ID!
   name: String
-  address: String
-  menu: [Meal]
+  address: String 
+  serving: [Post]
 }
-
-type Meal {
-  id: ID!
-  description: String
-  category: String
-  calories: Int
-  image: String
-  servingAt: [Restaurant]
-}
-
-
-
 
 `;
 
-// TODO: Define resolvers
 
 // Make executable GraphQL schema from defined typeDefs
-const schema = makeExecutableSchema({ typeDefs });
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-addMockFunctionsToSchema({ schema, mocks });
 
 export default schema;
