@@ -9,21 +9,21 @@ import mocks from './mocks'
 const typeDefs = `
 type Query {
   meal(id: ID): Meal
-  author(firstName: String, lastName: String): Author
+  restaurant(id: ID): Restaurant
 }
 
 type Restaurant {
   id: ID!
   name: String
   address: String
-  menu: [Meals]
+  menu: [Meal]
 }
 
 type Meal {
   id: ID!
   description: String
-  catefory: String
-  calories: Number
+  category: String
+  calories: Int
   image: String
   servingAt: [Restaurant]
 }
