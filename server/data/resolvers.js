@@ -18,7 +18,7 @@ const resolvers = {
       return { id: 1, name: 'JJ Diner', address: '123 Main Street, New York'}
     }
   },
-  Restaurant {
+  Restaurant: {
     serving(restaurant) {
       return [
         { id: 1, description: 'd1', calories: 123, image: 'image.jpg', servingAt: 'JJ Diner' }
