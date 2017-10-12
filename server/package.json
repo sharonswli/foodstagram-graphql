@@ -38,11 +38,12 @@
     "babel-preset-es2015": "6.5.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "6.5.0",
+    "casual": "^1.5.17",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-import": "^1.1.0",
     "eslint-plugin-react": "^4.2.3",
-    "graphql": "^0.10.0",
+    "graphql": "0.10.5",
     "nodemon": "^1.9.1"
   },
   "peerDependencies": {
