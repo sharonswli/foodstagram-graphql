@@ -11,6 +11,10 @@
 ## Features
 TODO
 
+## Client
+## Server
+
+
 -----------
 This project is licensed under the MIT license. 
 
