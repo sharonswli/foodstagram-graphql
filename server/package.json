@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "seed": "./node_modules/.bin/babel-node ./data/connectors.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,12 @@
     "apollo-server-express": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "4.13.4",
+    "faker": "^4.1.0",
     "graphql-tools": "^1.0.0",
-    "postgraphql": "^3.5.0"
+    "lodash": "^4.17.4",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.13.10"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
