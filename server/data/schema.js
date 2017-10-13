@@ -10,18 +10,21 @@ import resolvers from "./resolvers";
 const typeDefs = `
 # the schema allows the following query;
 type Query {
-  user(username: String): User
+  user(id: ID): User
 }
 
 type User {
   id: ID!
   username: String
+  firstName: String
+  lastName: String
+  email: String
   posts: [Post]
 }
 
 type Post {
   id: ID!
-  userId: Int
+  user: Int
   description: String
   calories: Int
   image: String
