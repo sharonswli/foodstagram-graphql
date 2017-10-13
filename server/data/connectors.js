@@ -70,21 +70,33 @@ RestaurantModel.hasMany(PostModel)
 PostModel.belongsTo(RestaurantModel)
 
 // Seed database with mock data
+Faker.seed(123);
 db.sync({ force: true }).then(() => {
+
   _.times(10, () => {
-    return UserModel.create({
-      username: Faker.internet.userName(),
-      email: Faker.internet.email(),
-      firstName: Faker.name.firstName(),
-      lastName: Faker.name.lastName(),
-      password: `$2a$10$F5MPmEuF.kjcp9ZedUt8xOLpok3pF.RCcFhAkSTnNc8f3srvf1BgC`
+    return RestaurantModel.create({
+      name: Faker.lorem.word(),
+      address: Faker.address.streetAddress(),
+      tel: Faker.phone.phoneNumber()
     })
-    .then(user => {
-      return _.times(5, () => {
-        user.createPost({
-          description: Faker.lorem.words(),
-          calories: Faker.random.number(),
-          image: Faker.image.food(),
+    .then(() => {
+      return UserModel.create({
+        username: Faker.internet.userName(),
+        email: Faker.internet.email(),
+        firstName: Faker.name.firstName(),
+        lastName: Faker.name.lastName(),
+        password: `$2a$10$F5MPmEuF.kjcp9ZedUt8xOLpok3pF.RCcFhAkSTnNc8f3srvf1BgC`
+      })
+      .then(user => {
+        return _.times(5, () => {
+          user.createPost({
+            description: Faker.lorem.words(),
+            calories: Faker.random.number(1000),
+            image: Faker.image.food(),
+          })
+          .then(post => {
+            post.setRestaurant(Faker.random.number({ min: 1, max: 10 }))
+          })
         })
       })
     })
