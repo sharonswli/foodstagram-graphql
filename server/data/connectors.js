@@ -3,14 +3,14 @@ import Faker from 'faker';
 import _ from 'lodash';
 
 
-// TODO: Set up database connection
+// Set up database connection
 const db = new Sequelize('foodstagram', 'postgres', 'postgres', {
   dialect: 'postgres',
   host: 'localhost'
 });
 
 
-// TODO: Define schemas for our database
+// Define schemas for our database
 
 const UserModel = db.define('user', {
   username: {
@@ -69,7 +69,7 @@ PostModel.belongsTo(UserModel)
 RestaurantModel.hasMany(PostModel)
 PostModel.belongsTo(RestaurantModel)
 
-// Seed database
+// Seed database with mock data
 db.sync({ force: true }).then(() => {
   _.times(10, () => {
     return UserModel.create({
@@ -80,13 +80,20 @@ db.sync({ force: true }).then(() => {
       password: `$2a$10$F5MPmEuF.kjcp9ZedUt8xOLpok3pF.RCcFhAkSTnNc8f3srvf1BgC`
     })
     .then(user => {
-      return user.createPost({
-        description: `Sample post by ${user.firstName}`,
-        calories: Faker.random.number(),
-        image: Faker.internet.url(),
+      return _.times(5, () => {
+        user.createPost({
+          description: Faker.lorem.words(),
+          calories: Faker.random.number(),
+          image: Faker.image.food(),
+        })
       })
     })
   })
 })
 
+const User = db.models.user;
+const Post = db.models.post;
+const Restaurant = db.models.restaurant;
+
+export { User, Post, Restaurant }
 export default db;
