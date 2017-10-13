@@ -36,6 +36,7 @@ type Restaurant {
   id: ID!
   name: String
   address: String 
+  tel: String
   serving: [Post]
 }
 
