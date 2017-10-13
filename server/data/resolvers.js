@@ -1,9 +1,12 @@
-import { User } from './connectors';
+import { User, Restaurant } from './connectors';
 
 const resolvers = {
   Query: {
     user(_, args) {
       return User.find({ where: args });
+    },
+    restaurants(_, args) {
+      return Restaurant.findAll()
     }
   },
   User: {

@@ -10,7 +10,8 @@ import resolvers from "./resolvers";
 const typeDefs = `
 # the schema allows the following query;
 type Query {
-  user(id: ID): User
+  user(id: ID!): User
+  restaurants: [Restaurant]
 }
 
 type User {
