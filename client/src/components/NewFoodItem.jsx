@@ -60,8 +60,21 @@ const NewFoodItemWithData = graphql(createNewFoodPost, {
       console.log("Creating new food now...")
       return mutate({ 
         variables: { description, image, userId },
+        // Optimistic UI: sometimes your client code can easily predict the result of a successful mutation even before the server resonds with the result
+        // Enables us to change UI without waiting on the latency of a round trip to a server
+        optimisticResponse: {
+          __typename: 'Mutation',
+          createNewFoodPost: {
+            __typename: 'Post',
+            // we can access the props of the container at `ownProps` if we need that info to compute the optimistic response
+            id: -1,
+            description,
+            image 
+          }
+        },
         // Update cache: apollo doesn't know the mutation has anything to do with the original query that renders out list
         update: (store, { data: { createNewFoodPost }}) => {
+          console.log("Adding item: ", createNewFoodPost)
           // Read original query
           const data = store.readQuery({ query: AppQuery, variables: { userId: 1 } });
 
