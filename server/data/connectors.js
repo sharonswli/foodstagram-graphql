@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 import Faker from 'faker';
 import _ from 'lodash';
+import fetch from 'node-fetch';
 
 
 // Set up database connection
@@ -103,9 +104,20 @@ db.sync({ force: true }).then(() => {
   })
 })
 
+// Add a REST API endpoint
+const FortuneCookie = {
+  getOne() {
+    return fetch('http://fortunecookieapi.herokuapp.com/v1/cookie')
+      .then(res => res.json())
+      .then(res => {
+        return res[0].fortune.message;
+      });
+  }
+}
+
 const User = db.models.user;
 const Post = db.models.post;
 const Restaurant = db.models.restaurant;
 
-export { User, Post, Restaurant }
+export { User, Post, Restaurant, FortuneCookie }
 export default db;

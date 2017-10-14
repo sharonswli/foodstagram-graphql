@@ -1,4 +1,4 @@
-import { User, Restaurant } from './connectors';
+import { User, Restaurant, FortuneCookie } from './connectors';
 
 const resolvers = {
   Query: {
@@ -25,6 +25,9 @@ const resolvers = {
   Restaurant: {
     serving(restaurant) {
       return restaurant.getPosts();
+    },
+    fortuneCookie() {
+      return FortuneCookie.getOne()
     }
   }
 }
