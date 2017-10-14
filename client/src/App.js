@@ -9,7 +9,7 @@ import FoodList from './components/FoodList';
 //@graphql(AppQuery)
 //@graphql(AppMutation) 
 class App extends Component {
-
+  
   render() {
     // Check if data is loading
     if(this.props.data.loading) {
@@ -22,6 +22,7 @@ class App extends Component {
     }
 
     const currentUser = this.props.data.user;
+    console.log("currentUser: ", currentUser)
 
     return (
       <div className="App">

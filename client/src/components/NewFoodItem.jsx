@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
-import PropTypes from 'prop-types';
 import { AppQuery } from '../App';
 
 class NewFoodItem extends Component {
+
+  state = {
+    description: '',
+    image: ''
+  }
   
   addNewFood() {
     return this.props.createNewFood({
-      description: 'new new post',
-      image: `http://fillmurray.com/200/300`,
+      description: this.state.description,
+      image: this.state.image,
       userId: this.props.userId
     })
   }
@@ -18,10 +22,18 @@ class NewFoodItem extends Component {
       <section className="new-food-container">
         <form>
           <label className="new-food-form-label">Image:</label>
-          <input type="text"></input>
+          <input 
+            type="text" 
+            value={this.state.image}
+            onChange={(e) => this.setState({ image: e.target.value })}
+          ></input>
 
           <label className="new-food-form-label">Description: </label>
-          <textarea></textarea>
+          <textarea  
+            type="text" 
+            value={this.state.description}
+            onChange={(e) => this.setState({ description: e.target.value })}            
+          ></textarea>
         </form>
         <button className="add-food-item-btn" onClick={this.addNewFood.bind(this)}>Add Food Item</button>
       </section>

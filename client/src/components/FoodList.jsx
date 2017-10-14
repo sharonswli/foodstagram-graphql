@@ -4,23 +4,10 @@ import NewFoodItem from './NewFoodItem';
 
 class FoodList extends Component {
   
-  constructor(props) {
-    super(props)
-  }
-
   foodList
 
-  componentWillMount() {
-    if(!this.props.food) {
-      console.error("no food error")
-      return;
-    }
-    // Reverse food list
-    this.foodList = this.props.food.slice().reverse()
-  }
-
   render() {
-    const foodList = this.props.food    
+    this.foodList = this.props.food.slice().reverse()
     return (
       <div className="food-list-container">
         <NewFoodItem userId={this.props.user.id}/>
