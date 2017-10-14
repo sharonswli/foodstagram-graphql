@@ -8,12 +8,24 @@ class FoodList extends Component {
     super(props)
   }
 
-  render() {    
+  foodList
+
+  componentWillMount() {
+    if(!this.props.food) {
+      console.error("no food error")
+      return;
+    }
+    // Reverse food list
+    this.foodList = this.props.food.slice().reverse()
+  }
+
+  render() {
+    const foodList = this.props.food    
     return (
       <div className="food-list-container">
         <NewFoodItem userId={this.props.user.id}/>
         <section className="food-item-container">
-          { this.props.food.map(post => <FoodItem key={post.id} post={post}/>)}
+          { this.foodList.map(post => <FoodItem key={post.id} post={post}/>)}
         </section>
       </div>
     )

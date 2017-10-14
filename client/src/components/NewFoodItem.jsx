@@ -5,33 +5,6 @@ import { AppQuery } from '../App';
 
 class NewFoodItem extends Component {
   
-
-  // addNewFood() {
-  //   this.props.mutate({
-  //     variables: {
-  //       description: `New description`,
-  //       image: `http://fillmurray.com/200/300`,
-  //       userId: 1
-  //     },
-  //     update: (store, { data: { createNewFoodPost }}) => {
-  //       // Read the data from our cache for this query
-  //       const data = store.readQuery({ query: AppQuery, variables: { userId: 1 } });
-  //       data.user.posts.push(createNewFoodPost)
-  //       console.log('data: ', data)
-  //       store.writeQuery({
-  //         query: AppQuery, 
-  //         data
-  //       })
-  //     }
-  //   })
-  //   .then(({ data }) => {
-  //     console.log("data", data);
-  //   })
-  //   .catch(err => {
-  //     console.error(`there was an error sending query: ${err}`)
-  //   })
-  // }
-
   addNewFood() {
     return this.props.createNewFood({
       description: 'new new post',
@@ -43,7 +16,7 @@ class NewFoodItem extends Component {
   render() {
     return(
       <section className="new-food-container">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label className="new-food-form-label">Image:</label>
           <input type="text"></input>
 
@@ -74,7 +47,7 @@ const NewFoodItemWithData = graphql(createNewFoodPost, {
       console.log("Creating new food now...")
       return mutate({ 
         variables: { description, image, userId },
-        // Update cache
+        // Update cache: apollo doesn't know the mutation has anything to do with the original query that renders out list
         update: (store, { data: { createNewFoodPost }}) => {
           // Read original query
           const data = store.readQuery({ query: AppQuery, variables: { userId: 1 } });
