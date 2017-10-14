@@ -10,25 +10,18 @@ import FoodList from './components/FoodList';
 //@graphql(AppMutation) 
 class App extends Component {
 
-  // Define propTypes
-  static propTypes = {
-    data: PropTypes.shape({
-      loading: PropTypes.bool,
-      error: PropTypes.object,
-      user: PropTypes.object
-    })
-  }
-  
   render() {
     // Check if data is loading
     if(this.props.data.loading) {
       return (<div>Loading...</div>)
     }
 
-    if(this.props.data.error) {
+    if(this.props.data.error || !this.props.data.user) {
       console.error(this.props.data.error)
       return (<div>An unexpected error occurred. Please contact support</div>)
     }
+
+    const currentUser = this.props.data.user;
 
     return (
       <div className="App">
@@ -38,21 +31,22 @@ class App extends Component {
         </header>
 
         <section className="user-info">
-          <p>Hello {this.props.data.user.firstName}! </p>
-          <img src={this.props.data.user.avatar} />          
+          <p>Hello {currentUser.firstName}! </p>
+          <img src={currentUser.avatar} />          
         </section>
       
         <section className="user-food">
-          <FoodList food={this.props.data.user.posts}/>
+          <FoodList food={currentUser.posts} user={currentUser}/>
         </section>
       </div>
     );
   }
 }
 
-const AppQuery = gql`
+export const AppQuery = gql`
 query AppQuery($userId: ID!) {
   user(id: $userId) {
+    id
     firstName
     avatar
     posts {
@@ -63,7 +57,13 @@ query AppQuery($userId: ID!) {
   }
 }
 `
-
+App.propTypes = {
+  data: PropTypes.shape({
+    loading: PropTypes.bool,
+    error: PropTypes.object,
+    user: PropTypes.object
+  })
+}
 
 const AppWithData = graphql(AppQuery, { 
   options : {

@@ -1,4 +1,5 @@
-import { User, Restaurant, FortuneCookie } from './connectors';
+import { User, Restaurant, FortuneCookie, Post } from './connectors';
+import Faker from 'faker';
 
 const resolvers = {
   Query: {
@@ -7,6 +8,20 @@ const resolvers = {
     },
     restaurants(_, args) {
       return Restaurant.findAll()
+    }
+  },
+  Mutation: {
+    createNewFoodPost: (_, args) => {
+      return Post.create({
+        userId: args.userId,
+        description: args.description,
+        calories: args.calories,
+        image: args.image,
+        restaurantId: Math.random()*(10-1)+1
+      })
+      .then(post => {
+        return post
+      })
     }
   },
   User: {

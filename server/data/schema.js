@@ -14,6 +14,10 @@ type Query {
   restaurants: [Restaurant]
 }
 
+type Mutation {
+  createNewFoodPost(description: String, image: String, userId: Int): Post
+}
+
 type User {
   id: ID!
   avatar: String
@@ -31,6 +35,7 @@ type Post {
   calories: Int
   image: String
   servingAt: Restaurant
+  createdAt: String
 }
 
 type Restaurant {
