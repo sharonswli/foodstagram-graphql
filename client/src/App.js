@@ -41,8 +41,8 @@ class App extends Component {
           <p>Hello {this.props.data.user.firstName}! </p>
           <img src={this.props.data.user.avatar} />          
         </section>
-
-        <section>
+      
+        <section className="user-food">
           <FoodList food={this.props.data.user.posts}/>
         </section>
       </div>
@@ -63,6 +63,7 @@ query AppQuery($userId: ID!) {
   }
 }
 `
+
 
 const AppWithData = graphql(AppQuery, { 
   options : {
