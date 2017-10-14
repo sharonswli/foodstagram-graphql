@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment'
 
 class FoodItem extends Component {
   render() {
