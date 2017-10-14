@@ -34,6 +34,9 @@ const UserModel = db.define('user', {
   password: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  avatar: {
+    type: Sequelize.STRING
   }
 });
 
@@ -86,6 +89,7 @@ db.sync({ force: true }).then(() => {
         email: Faker.internet.email(),
         firstName: Faker.name.firstName(),
         lastName: Faker.name.lastName(),
+        avatar: Faker.image.avatar(),
         password: `$2a$10$F5MPmEuF.kjcp9ZedUt8xOLpok3pF.RCcFhAkSTnNc8f3srvf1BgC`
       })
       .then(user => {

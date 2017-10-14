@@ -16,6 +16,7 @@ type Query {
 
 type User {
   id: ID!
+  avatar: String
   username: String
   firstName: String
   lastName: String
