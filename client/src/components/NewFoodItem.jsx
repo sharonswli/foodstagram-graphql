@@ -10,6 +10,7 @@ class NewFoodItem extends Component {
   }
   
   addNewFood() {
+    this.setState({ description: '', image: ''})
     return this.props.createNewFood({
       description: this.state.description,
       image: this.state.image,
