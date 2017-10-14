@@ -32,7 +32,6 @@ type Post {
   id: ID!
   user: Int
   description: String
-  calories: Int
   image: String
   servingAt: Restaurant
   createdAt: String

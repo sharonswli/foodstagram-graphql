@@ -44,9 +44,6 @@ const PostModel = db.define('post', {
   description: {
     type: Sequelize.STRING
   },
-  calories: {
-    type: Sequelize.INTEGER
-  },
   image: {
     type: Sequelize.STRING    
   }
@@ -96,7 +93,6 @@ db.sync({ force: true }).then(() => {
         return _.times(5, () => {
           user.createPost({
             description: Faker.lorem.words(),
-            calories: Faker.random.number(1000),
             image: Faker.image.food(),
           })
           .then(post => {

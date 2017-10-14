@@ -15,7 +15,6 @@ const resolvers = {
       return Post.create({
         userId: args.userId,
         description: args.description,
-        calories: args.calories,
         image: args.image,
         restaurantId: Math.random()*(10-1)+1
       })
